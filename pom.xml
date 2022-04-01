@@ -11,7 +11,7 @@
 	<groupId>com.appsdeveloperblog.app.ws</groupId>
 	<artifactId>mobile_app_ws</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>mobile_app_ws</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
