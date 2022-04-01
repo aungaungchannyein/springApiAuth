@@ -51,6 +51,7 @@ public class InitialUsersSetup {
         RoleEntity roleAdmin=createRole(Roles.ROLE_ADMIN.name(), Arrays.asList(readAuthority,writeAuthority,deleteAuthority));
 
         if(roleAdmin == null)return;
+        if(userRepository.findByEmail("aung@gmail.com") != null) return;
 
         UserEntity adminUser= new UserEntity();
         adminUser.setFirstName("ChanChan");
