@@ -2,6 +2,8 @@ package com.appsdeveloperblog.app.ws.mobile_app_ws.io.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -32,6 +34,23 @@ public class UserEntity implements Serializable {
 
     @Column(nullable = false )
     private Boolean emailVerificationStatus= false;
+
+    @OneToMany(mappedBy = "userDetails",cascade = CascadeType.ALL)
+    private List<AddressEntity> addresses;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST},fetch = FetchType.EAGER)
+    @JoinTable(name="users_roles",
+            joinColumns = @JoinColumn(name="users_id",referencedColumnName = "id"),
+            inverseJoinColumns =  @JoinColumn(name="roles_id",referencedColumnName = "id") )
+    private Collection<RoleEntity> roles;
+
+    public Collection<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<RoleEntity> roles) {
+        this.roles = roles;
+    }
 
     public long getId() {
         return id;
@@ -95,5 +114,13 @@ public class UserEntity implements Serializable {
 
     public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
         this.emailVerificationStatus = emailVerificationStatus;
+    }
+
+    public List<AddressEntity> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<AddressEntity> addresses) {
+        this.addresses = addresses;
     }
 }

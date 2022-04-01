@@ -26,7 +26,9 @@ public class AppExceptionHandler {
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<Object> handleOtherExceptions(Exception ex, WebRequest request)
     {
-        ErrorMessage errorMessage = new ErrorMessage(new Date(), ex.getMessage());
+    	String errorMessageDescription = ex.getLocalizedMessage();
+    	if(errorMessageDescription == null) errorMessageDescription =ex.toString();
+        ErrorMessage errorMessage = new ErrorMessage(new Date(), errorMessageDescription);
 
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }

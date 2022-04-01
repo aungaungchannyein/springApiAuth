@@ -1,11 +1,23 @@
 package com.appsdeveloperblog.app.ws.mobile_app_ws.ui.model.response;
 
+import java.util.List;
+
 public class UserRes {
 
     private String userId;
     private String firstName;
     private String lastName;
     private String email;
+
+    private List<AddressRes> addresses;
+
+    public List<AddressRes> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<AddressRes> addresses) {
+        this.addresses = addresses;
+    }
 
     public String getUserId() {
         return userId;
